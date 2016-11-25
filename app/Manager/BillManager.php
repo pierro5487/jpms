@@ -76,4 +76,19 @@ class BillManager extends \W\Manager\Manager
         $req->execute(array('idCustomer' => $idCustomer));
         return $req->fetchAll();
     }
+
+    public function deleteBill($idBill)
+    {
+        $req=$this->dbh->prepare('DELETE FROM bill WHERE id = :idBill');
+        $req->execute(array('idBill' => $idBill));
+
+        $req=$this->dbh->prepare('DELETE FROM bill_mounting WHERE id_bill = :idBill');
+        $req->execute(array('idBill' => $idBill));
+
+        $req=$this->dbh->prepare('DELETE FROM bill_other_service WHERE id_bill = :idBill');
+        $req->execute(array('idBill' => $idBill));
+
+        $req=$this->dbh->prepare('DELETE FROM bill_decalaminage WHERE id_bill = :idBill');
+        $req->execute(array('idBill' => $idBill));
+    }
 }

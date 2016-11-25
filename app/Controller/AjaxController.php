@@ -190,4 +190,10 @@ class AjaxController extends Controller
         $this->showJson($cityList);
     }
 
+    public function deletebill()
+    {
+        $idBill = $_GET['idFacture'];
+        $this->billManager->deleteBill($idBill);
+        $this->showJson($idBill);
+    }
 }

@@ -23,6 +23,7 @@
         var ajaxBillGroupNumberPrinting= '<?= $this->url('ajax_bill_group_print') ?>';
         var ajaxOthersService= '<?= $this->url('ajax_other_service') ?>';
         var ajaxCityList=  '<?= $this->url('ajax_city_list') ?>';
+		var ajaxDeleteBill = '<?= $this->url('ajax_delete_bill') ?>';
     </script>
     <script src="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 

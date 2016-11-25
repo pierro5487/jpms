@@ -501,8 +501,19 @@ $(function(){
     });
 
     /*---------supression facture--------------*/
-    $('.deleteBill').on('click',function(){
-        alert('Désolé pas encore eut le temps de finir... faite une liste des factures a supprimer');
+    $('.deleteBill').on('click',function(event){
+        if(confirm('Etes vous certain de vouloir supprimer cette facture?')){
+            var idFacture = $(event.target).parents('tr').attr('data-idFacture');
+            $.ajax({
+                url : ajaxDeleteBill ,
+                type : 'get',
+                dataType : 'json',
+                data : {'idFacture' : idFacture},
+                success : function(data){
+                    $('tr[data-idFacture='+idFacture+']').remove();
+                }
+            });
+        }
     });
 
     /*------autocomplete zipcode-----*/

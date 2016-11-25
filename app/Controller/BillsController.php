@@ -27,8 +27,8 @@ class BillsController extends Controller
         $this->billGroupManager = new\Manager\BillsGroupManager();
         $this->billsGroupBillManager = new\Manager\BillsGroupBillManager();
         $this->billDecalaminageManager = new\Manager\BillDecalaminageManager();
-        $this->billOtherServiceManager = new\Manager\billOtherServiceManager();
-        $this->persoServiceManager = new\Manager\persoServiceManager();
+        $this->billOtherServiceManager = new\Manager\BillOtherServiceManager();
+        $this->persoServiceManager = new\Manager\PersoServiceManager();
     }
 
     public function addBill()

@@ -30,4 +30,5 @@
         ['GET', '/billgroupprint', 'Ajax#billGroupPrint','ajax_bill_group_print'],
         ['GET', '/billotherservice', 'Ajax#listOtherService','ajax_other_service'],
         ['GET', '/citylist', 'Ajax#cityList','ajax_city_list'],
+        ['GET', '/deletebill', 'Ajax#deletebill','ajax_delete_bill'],
 	);

@@ -20,7 +20,7 @@
     <?php
     foreach($bills as $bill){
         ?>
-        <tr id="bill<?=$bill['id'] ?>">
+        <tr data-idFacture="<?=$bill['id'] ?>">
             <td>FA<?= $bill['id'] ;?></td>
             <td><?= $bill['lastname'].' '.$bill['firstname'] ;?></td>
             <td><?= $bill['date_created'] ;?></td>
