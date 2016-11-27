@@ -128,17 +128,17 @@ form button{
     color:green;
     font-size: 20px;
 }
-table{
+#billContain table{
     border-collapse: collapse;
     width: 100%;
     text-align: center;
 }
-th{
+#billContain th{
     background-color: lightgrey;
 }
-a i{
+/*a i{
     color:black;
-}
+}*/
 .img{
     width: 30px;
 }

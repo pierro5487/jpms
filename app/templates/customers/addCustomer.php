@@ -18,15 +18,15 @@
         <!--<input type="text" placeholder="city" name="city" value="<?php if(isset($customer) && !empty($errors)){echo $customer['city'];} ?>" required />-->
         <input type="email" placeholder="email" name="email" value="<?php if(isset($customer) && !empty($errors)){echo $customer['email'];} ?>"/>
         <input type="tel" placeholder="téléphone" name="phone" value="<?php if(isset($customer) && !empty($errors)){echo $customer['phone'];} ?>" required/>
-        <button type="submit" name="addCustomer">Ajouter</button>
+        <button type="submit" name="addCustomer" class="btn btn-success btn-small">Ajouter</button>
     </form>
     <?php
         if(empty($errors) && isset($customer)){
-            ?><p class="label-good">nouveau client ajouté</p><?php
+            ?><p class="alert alert-success">nouveau client ajouté</p><?php
         }else{
             foreach ($errors as $error => $post){
                 ?>
-                <p class="label label-danger"><?= $post ?></p>
+                <p class="alert alert-danger"><?= $post ?></p>
                 <?php
             }
         }

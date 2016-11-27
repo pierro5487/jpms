@@ -24,15 +24,15 @@
     </select>
     </div>
     <input type="text" name="model" placeholder="Modèle" value="<?php if(!empty($errors)){ echo $choice['model'];}?>" required/>
-    <button type="submit" name="addModel">Enregistrer la marque</button>
+    <button type="submit" name="addModel" class="btn btn-success btn-small">Enregistrer la marque</button>
 </form>
 <?php
 if(isset($_POST['addModel'])){
     if(empty($errors)){
-        echo '<p class="label-good">Nouveau Modèle enregistré</p>';
+        echo '<div class="alert-block"><p class="alert alert-success">Nouveau Modèle enregistré</p></div>';
     }else{
         foreach ($errors as $error){
-            echo '<p class="label-danger">'.$error.'</p>';
+            echo '<p class="alert alert-danger">'.$error.'</p>';
         }
     }
 

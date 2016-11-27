@@ -52,7 +52,7 @@
         </select>
         <a href="<?= $this->url('add_customer')?>">Ajouter un client</a>
     </div>
-    <button type="submit" name="addCar">Ajouter</button>
+    <button  class="btn btn-success btn-small" type="submit" name="addCar">Ajouter</button>
 </form>
 <?php
 if(isset($errors) && empty($errors) && isset($car)){

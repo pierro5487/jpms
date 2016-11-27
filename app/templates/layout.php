@@ -5,9 +5,11 @@
 	<title><?= $this->e($title) ?></title>
 
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="<?= $this->assetUrl('bootstrap/css/bootstrap.css') ?>">
+    <link rel="stylesheet" href="<?= $this->assetUrl('bootstrap/css/bootstrap-theme.css') ?>">
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" defer></script>
+    <script src="<?= $this->assetUrl('js/jquery-3.1.1.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('bootstrap/js/bootstrap.min.js') ?>"></script>
     <script>
         var ajaxCustomerSearch= '<?= $this->url('ajax_customer_search') ?>';
 		var ajaxCarSearch= '<?= $this->url('ajax_car_search') ?>';
@@ -34,42 +36,42 @@
 			<header>
 				<h1><?= $this->e($title) ?></h1>
 			</header>
-            <nav>
-				<ul class="menu-primaire">
-					<li class="menu-liste-primaire">
-						<div>
-							Clients
-						</div>
-						<ul class="menu-secondaire">
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('listing_customers')?>">Liste de clients</a></li>
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('add_customer')?>">Nouveau client</a></li>
+            <nav class="well">
+				<ul class="nav nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							Clients<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class=""><a href="<?= $this->url('listing_customers')?>">Liste de clients</a></li>
+							<li class=""><a href="<?= $this->url('add_customer')?>">Nouveau client</a></li>
 						</ul>
 					</li>
-					<li class="menu-liste-primaire">
-                        <div>
-                            Autos
-                        </div>
-						<ul class="menu-secondaire">
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('listing_cars')?>">Liste d'autos</a></li>
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('add_car')?>">Nouvelle auto</a></li>
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('add_brand')?>">Ajouter une marque</a></li>
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('add_model')?>">Ajouter un modèle</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Autos<span class="caret"></span>
+                        </a>
+						<ul class="dropdown-menu">
+							<li class=""><a href="<?= $this->url('listing_cars')?>">Liste d'autos</a></li>
+							<li class=""><a href="<?= $this->url('add_car')?>">Nouvelle auto</a></li>
+							<li class=""><a href="<?= $this->url('add_brand')?>">Ajouter une marque</a></li>
+							<li class=""><a href="<?= $this->url('add_model')?>">Ajouter un modèle</a></li>
 						</ul>
 					</li>
-					<li class="menu-liste-primaire">
-                        <div>
-                            Factures
-                        </div>
-						<ul class="menu-secondaire">
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('add_bill')?>">Nouvelle Facture</a></li>
-							<li class="menu-liste-secondaire"><a href="<?= $this->url('listing_bills')?>">liste des factures</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Factures<span class="caret"></span>
+                        </a>
+						<ul class="dropdown-menu">
+							<li class=""><a href="<?= $this->url('add_bill')?>">Nouvelle Facture</a></li>
+							<li class=""><a href="<?= $this->url('listing_bills')?>">liste des factures</a></li>
 						</ul>
 					</li>
 				</ul>
             </nav>
 		</header>
 
-		<section>
+		<section class=" col-xs-12">
 			<?= $this->section('main_content') ?>
 		</section>
 

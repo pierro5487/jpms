@@ -24,7 +24,16 @@ class CarsManager extends \W\Manager\Manager
      */
     public function getCarsList()
     {
-        $sql=('SELECT matricule,cb.name as brand,model.name as model,cars.id as id FROM cars INNER JOIN car_brand AS cb ON cb.id=cars.id_car_brand INNER JOIN model ON  cars.car_model= model.id');
+        $sql=('
+        SELECT matricule,cb.name as brand,model.name as model,cars.id as id 
+        FROM cars 
+        INNER JOIN car_brand AS cb 
+        ON cb.id=cars.id_car_brand 
+        INNER JOIN model 
+        ON  cars.car_model= model.id
+        WHERE model.name != "non renseigné"
+        ORDER BY cars.date_created DESC 
+        ');
         $req=$this->dbh->query($sql);
         return $req->fetchAll();
     }

@@ -37,8 +37,8 @@
     <input type="hidden" name="persoServices" value=""/>
     <textarea placeholder="Notes" name="information" maxlength="250"></textarea>
     <div id="servicesTable">
-        <button type="button" id="addServiceForBill">Ajouter un service</button>
-        <table>
+        <button class="btn btn-info btn-small" type="button" id="addServiceForBill">Ajouter un service</button>
+        <table class="table table-bordered table-striped">
             <thead
             <tr>
                 <th>Designation</th>
@@ -56,9 +56,9 @@
             </tr>
             </tfoot>
         </table>
-        <button type="button" id="resetTable">Effacer la liste</button>
+        <button type="button" id="resetTable" class="btn btn-danger btn-small">Effacer la liste</button>
     </div>
-    <p><button type="submit" name="sendBill">Enregistrer la facture</button></p>
+    <p><button type="submit" name="sendBill" class="btn btn-success btn-small">Enregistrer la facture</button></p>
 </form>
 
 <?php $this->stop('main_content') ?>

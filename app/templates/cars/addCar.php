@@ -44,16 +44,18 @@
         </select>
         <a href="<?= $this->url('add_customer')?>">Ajouter un client</a>
     </div>
-    <button type="submit" name="addCar">Ajouter</button>
+    <button class="btn btn-success btn-small" type="submit" name="addCar">Ajouter</button>
 </form>
 <?php
-if(empty($errors) && isset($car)){
-    ?><p class="label-good">nouvel auto ajouté</p><?php
-}else{
-    foreach ($errors as $error => $post){
-        ?>
-        <p class="label-danger"><?= $post ?></p>
-        <?php
+if(isset($_POST['addCar'])){
+    if(empty($errors) && isset($car)){
+        ?><p class="alert alert-success">nouvel auto ajouté</p><?php
+    }else{
+        foreach ($errors as $error => $post){
+            ?>
+            <p class="alert alert-danger"><?= $post ?></p>
+            <?php
+        }
     }
 }
 ?>

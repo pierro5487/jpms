@@ -8,7 +8,7 @@
 
 <?php $this->start('main_content') ?>
 <div id="customerContain">
-    <article>
+    <article class="well">
         <p id="idCustomer" style="display:none"><?=$customer['id'] ?></p>
         <p>Nom : <?=$customer['lastname'] ?></p>
         <p>Prénom : <?=$customer['firstname'] ?></p>
@@ -17,8 +17,8 @@
         <p>Enregistré le : <?=$customer['date_created'] ?></p>
         <p>Téléphone: <?=$customer['phone'][0].$customer['phone'][1].'.'.$customer['phone'][2].$customer['phone'][3].'.'.$customer['phone'][4].$customer['phone'][5].'.'.$customer['phone'][6].$customer['phone'][7].'.'.$customer['phone'][8].$customer['phone'][9] ?></p>
     </article>
-    <article>
-        <table>
+    <article class="well">
+        <table class="table table-striped table-bordered">
             <tr>
                 <th>n°Facture</th>
                 <th>Date</th>
@@ -45,16 +45,16 @@
                         <?php
                     }
                 ?>
-                <td><a href="<?= $this->url('view_bill', ['id' => $bill['id']]) ?>"><i class="fa fa-search" aria-hidden="true"></i></a></td>
+                <td class="text-center"><a class="btn btn-success btn-small" href="<?= $this->url('view_bill', ['id' => $bill['id']]) ?>"><i class="fa fa-search" aria-hidden="true"></i></a></td>
             </tr>
             <?php
         }
         ?>
         </table>
-        <button id="MakeBillsGroup"<?php if(!$notPaye){echo 'disabled';}?>>Facture Cumulé</button>
+        <button class="btn btn-small btn-success" id="MakeBillsGroup"<?php if(!$notPaye){echo 'disabled';}?>>Créer une facture Cumulé</button>
     </article>
-    <article>
-        <table>
+    <article class="well">
+        <table class="table table-striped table-bordered">
             <tr>
                 <th>n°Factures Groupées</th>
                 <th>Date</th>
@@ -79,7 +79,7 @@
                         <?php
                     }
                     ?>
-                    <td><a href="<?= $this->url('view_bill_group', ['id' => $billGroup['id']]) ?>"><i class="fa fa-search" aria-hidden="true"></i></a></td>
+                    <td class="text-center"><a class="btn btn-success btn-small" href="<?= $this->url('view_bill_group', ['id' => $billGroup['id']]) ?>"><i class="fa fa-search" aria-hidden="true"></i></a></td>
                 </tr>
                 <?php
             }

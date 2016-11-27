@@ -25,7 +25,7 @@
         </diV>
         <input type="email" placeholder="email" name="email" value="<?php echo $customer['email'];?>"/>
         <input type="tel" placeholder="téléphone" name="phone" value="<?php echo $customer['phone']; ?>" required/>
-        <button type="submit" name="editCustomer">Ajouter</button>
+        <button type="submit" name="editCustomer" class="btn btn-success btn-small">Ajouter</button>
     </form>
     <?php
         if(isset($_POST['editCustomer'])){
