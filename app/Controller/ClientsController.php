@@ -115,6 +115,10 @@ class ClientsController extends Controller
             ];
             /*vérification données*/
             $errors = $this->validedCustomer($newCustomer);
+            /*--verif doublon---*/
+            if($this->customersManager->customerExist($newCustomer)){
+                $errors['exist'] = 'Ce client existe déja';
+            }
             /*on teste si il y a des erreurs*/
             if(count($errors) == 0){
                 $this->customersManager->insert($newCustomer);

@@ -63,4 +63,18 @@ class CustomersManager extends \W\Manager\Manager
         $req->execute(array('idCustomer'=>$id));
         return $req->fetch();
     }
+
+    public function customerExist($newCustomer)
+    {
+        $sql="
+        SELECT count(*)
+        FROM customers as c
+        WHERE firstname = :firstname
+        AND lastname = :lastname
+        AND id_city = :id_city
+        ";
+        $req=$this->dbh->prepare($sql);
+        $req->execute(array('firstname'=>$newCustomer['firstname'],'lastname'=>$newCustomer['lastname'],'id_city' =>$newCustomer['id_city']));
+        return $req->fetchColumn(0);
+    }
 }
