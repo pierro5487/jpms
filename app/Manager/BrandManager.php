@@ -27,4 +27,15 @@ class BrandManager extends \W\Manager\Manager
         $req=$this->dbh->query('SELECT * FROM car_brand ORDER BY name');
         return $req->fetchAll();
     }
+
+    public function brandExist($brand){
+        $sql="
+        SELECT count(*) as nbr
+        FROM car_brand as cb
+        WHERE name=:brand
+        ";
+        $req=$this->dbh->prepare($sql);
+        $req->execute(array('brand'=>$brand));
+        return $req->fetchColumn(0);
+    }
 }

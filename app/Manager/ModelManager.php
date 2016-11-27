@@ -19,4 +19,16 @@ class ModelManager extends \W\Manager\Manager
         parent::__construct();
         $this->setTable('model');
     }
+
+    public function modelExist($model,$idBrand){
+        $sql="
+        SELECT count(*) as nbr
+        FROM model 
+        WHERE name = :model 
+        AND id_brand = :idBrand 
+        ";
+        $req=$this->dbh->prepare($sql);
+        $req->execute(array('model'=>$model,'idBrand'=>$idBrand));
+        return $req->fetchColumn(0);
+    }
 }

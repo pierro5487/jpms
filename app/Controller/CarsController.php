@@ -125,8 +125,10 @@ class CarsController extends Controller
         $errors=[];
         if(isset($_POST['addBrand'])){
             $brand = trim(htmlspecialchars($_POST['brand']));
-            $brand = ucfirst($brand);
-            $this->brandManager->insert(['name'=>$brand]);
+            $brand = ucfirst(strtolower($brand));
+            if(!$this->brandManager->brandExist($brand)){
+                $this->brandManager->insert(['name'=>$brand]);
+            }
         }
         $this->show('cars/addBrand',['errors'=>$errors]);
     }
@@ -139,10 +141,13 @@ class CarsController extends Controller
         $errors =[];
         if(isset($_POST['addModel'])){
             $model = trim(htmlspecialchars($_POST['model']));
-            $model = ucfirst($model);
+            $model = ucfirst(strtolower($model));
             $idBrand = trim(htmlspecialchars($_POST['brand']));
             if($idBrand =='no'){
                 $errors['brand']='Veuillez sélectionner une marque';
+            }
+            if($this->modelManager->modelExist($model,$idBrand)){
+                $errors['exist'] = 'Ce modèle a déja été enregistré';
             }
             if(empty($errors)){
                 $this->modelManager->insert(['name'=>$model,'id_brand'=>$idBrand]);
