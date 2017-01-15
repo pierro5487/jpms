@@ -122,8 +122,12 @@ class ClientsController extends Controller
             /*on teste si il y a des erreurs*/
             if(count($errors) == 0){
                 $this->customersManager->insert($newCustomer);
+                $flash['success'][0] = 'Nouveau client ajouté';
             }
-            $this->show('customers/addCustomer',['errors'=>$errors,'customer'=>$newCustomer]);
+            foreach ($errors as $key => $error){
+                $flash['danger'][$key] = $error;
+            }
+            $this->show('customers/addCustomer',['errors'=>$errors,'customer'=>$newCustomer,'flash'=>$flash]);
         }
         $this->show('customers/addCustomer',['errors'=>$errors]);
     }

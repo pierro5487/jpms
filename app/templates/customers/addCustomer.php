@@ -6,6 +6,19 @@
  */
 <?php $this->layout('layout', ['title' => 'Nouveau client']) ?>
 
+<?php $this->start('flash')?>
+<?php
+    if(isset($flash)){
+        foreach($flash['success'] as $flash){
+            echo '<p class="alert alert-success flash">'.$flash.'</p>';
+        }
+        foreach($flash['danger'] as $flash){
+            echo '<p class="alert alert-danger flash">'.$flash.'</p>';
+        }
+    }
+    ?>
+<?php $this->stop('flash')?>
+
 <?php $this->start('main_content') ?>
     <form method="POST" action="#">
         <input type="text" placeholder="nom" name="lastname" value="<?php if(isset($customer) && !empty($errors)){echo $customer['lastname'];} ?>" required />
