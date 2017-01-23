@@ -35,6 +35,7 @@
         var ajaxCityList=  '<?= $this->url('ajax_city_list') ?>';
 		var ajaxDeleteBill = '<?= $this->url('ajax_delete_bill') ?>';
 		var eventLoad = '<?= $this->url('event_load') ?>';
+		var getClients = '<?= $this->url('get_client') ?>';
     </script>
     <script src="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 

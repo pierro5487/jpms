@@ -31,6 +31,7 @@
         ['GET', '/billotherservice', 'Ajax#listOtherService','ajax_other_service'],
         ['GET', '/citylist', 'Ajax#cityList','ajax_city_list'],
         ['GET', '/deletebill', 'Ajax#deletebill','ajax_delete_bill'],
-        ['GET', '/agenda/[i:semaine]/[i:year]', 'Agenda#view','view_agenda'],
+        ['GET', '/agenda', 'Agenda#view','view_agenda'],
         ['GET', '/eventload', 'Agenda#eventLoad','event_load'],
+        ['GET', '/getclients', 'Clients#getClients','get_client'],
 	);

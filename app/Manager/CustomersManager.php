@@ -45,7 +45,7 @@ class CustomersManager extends \W\Manager\Manager
      */
     public function getCustomersSearchList($search)
     {
-        $req=$this->dbh->prepare('SELECT id FROM customers WHERE lastname LIKE :search');
+        $req=$this->dbh->prepare('SELECT id,firstname,lastname FROM customers WHERE lastname LIKE :search');
         $req->execute(array('search' => $search.'%'));
         return $req->fetchAll();
     }

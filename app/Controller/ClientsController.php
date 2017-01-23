@@ -145,4 +145,10 @@ class ClientsController extends Controller
         }
         return $errors;
     }
+
+    public function getClients(){
+        $search = $_GET['client'];
+        $clients = $this->customersManager->getCustomersSearchList($search);
+        $this->showJson($clients);
+    }
 }
