@@ -36,6 +36,7 @@
 		var ajaxDeleteBill = '<?= $this->url('ajax_delete_bill') ?>';
 		var eventLoad = '<?= $this->url('event_load') ?>';
 		var getClients = '<?= $this->url('get_client') ?>';
+        var addRdv = '<?= $this->url('add_rdv') ?>';
     </script>
     <script src="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 

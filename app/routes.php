@@ -34,4 +34,5 @@
         ['GET', '/agenda', 'Agenda#view','view_agenda'],
         ['GET', '/eventload', 'Agenda#eventLoad','event_load'],
         ['GET', '/getclients', 'Clients#getClients','get_client'],
+        ['POST', '/addrdv', 'Agenda#addRdv','add_rdv'],
 	);
