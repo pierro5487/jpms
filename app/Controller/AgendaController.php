@@ -24,6 +24,7 @@ class AgendaController extends Controller
 
         $this->show('agenda/view');
     }
+
     public function eventLoad(){
         $start = date('Y-m-d',$_GET['start']);
         $end = date('Y-m-d',$_GET['end']);
@@ -64,9 +65,9 @@ class AgendaController extends Controller
         $data = $_POST;
         print_r($data);
         $explode = explode('/',$data['dateRdv']);
-        print_r($explode);
+        //print_r($explode);
         $start = strtotime($explode[2].'-'.$explode[1].'-'.$explode[0].' '.$data['heureRdv'].':00');
-        echo $start;
+        echo $data['idClient'];
         $end = $start+intval($data['dureeRdv']*60);
         $data = [
             'acier'         => $data['acier'],
@@ -75,7 +76,7 @@ class AgendaController extends Controller
             'livraison'     => $data['typeRdv'],
             'start'         => date('Y-m-d H:i:s',$start),
             'end'           => date('Y-m-d H:i:s',$end),
-            'id_customer'   => 1,
+            'id_customer'   => $data['user'],
             'remarque'      => $data['remarque']
         ];
 

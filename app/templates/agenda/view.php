@@ -22,6 +22,25 @@
         max-width: 900px;
         margin: 0 auto;
     }
+    #clientsList{
+        max-height: 110px;
+        border: 1px solid black;
+        overflow-y: scroll;
+        width: 80%;
+        position: absolute;
+        background-color: white;
+        top: 40px;
+        border-radius:5px;
+    }
+    #clients{
+        position: relative;
+        width: 80%;
+    }
+
+    .clientItem:hover{
+        cursor:pointer;
+        background-color: grey;
+    }
 
 </style>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,8 +55,11 @@
                     <label>
                         Client:
                     </label>
-                    <input list="clientsList" type="text" id="clientsInput"/>
-                    <datalist id="clientsList"></datalist>
+                    <div id="clients">
+                        <input list="clientsList" type="text" id="clientsInput" autocomplete="off"/>
+                        <input type="hidden" id="idClient"/>
+                        <ul id="clientsList" class="hide" ></ul>
+                    </div>
                     <label>
                         date Rdv:
                     </label>
@@ -182,9 +204,21 @@
                     client: $(this).val()
                 },
                 success:function(data){
+                    $('#clientsList').removeClass('hide');
+                    if($('#clientsInput').val()==''){
+                        $('#clientsList').addClass('hide');
+                    }
                     $('#clientsList').empty();
+                    if($(data).length < 1){
+                        $('#clientsList').append('<option class="clientItem">0 resultats</option>');
+                    }
                     $.each(data,function(key,client){
-                        $('#clientsList').append('<option value="'+client.lastname+' '+client.firstname+'" class="dataListItem" data-id_user="'+client.id+'" >');
+                        $('#clientsList').append('<option class="clientItem" value="'+client.id+'">'+client.lastname+' '+client.firstname+'</option>');
+                    });
+                    $('.clientItem').on('click',function(){
+                        $('#clientsInput').val($(this).text());
+                        $('#idClient').val($(this).val());
+                        $('#clientsList').addClass('hide');
                     });
 
                 }
@@ -194,7 +228,7 @@
 
         $('#addRdv').on('click',function(){
              var data ={
-                user : $('#clientsInput').val(),
+                 user : $('#idClient').val(),
                  dateRdv : $('#dateRdv').val(),
                  heureRdv : $('#heureRdv').val(),
                  dureeRdv : $('#dureeRdv').val(),
