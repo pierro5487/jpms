@@ -14,15 +14,23 @@ use \W\Controller\Controller;
 class AgendaController extends Controller
 {
     private $rdvManager;
+    private $clientManager;
 
     public function __construct()
     {
         $this->rdvManager = new \Manager\RdvManager();
+        $this->clientManager = new \Manager\CustomersManager();
     }
 
     public function view(){
-
-        $this->show('agenda/view');
+        if(isset($_GET['id'])){
+            $clients = $this->clientManager->find($_GET['id']);
+            $client['id'] = $clients['id'];
+            $client['name'] = $clients['lastname'].' '.$clients['firstname'];
+        }else{
+            $client['id'] = 0;
+        }
+        $this->show('agenda/view',['client' => $client]);
     }
 
     public function eventLoad(){

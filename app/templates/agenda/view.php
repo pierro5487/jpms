@@ -56,7 +56,7 @@
                         Client:
                     </label>
                     <div id="clients">
-                        <input list="clientsList" type="text" id="clientsInput" autocomplete="off"/>
+                        <input list="clientsList" type="text" id="clientsInput" autocomplete="off" />
                         <input type="hidden" id="idClient"/>
                         <ul id="clientsList" class="hide" ></ul>
                     </div>
@@ -146,10 +146,13 @@
 <div id='calendar'></div>
 <script type="text/javascript" >
     $(function(){
+        var client = <?= json_encode($client)?>;
+
         $('#calendar').fullCalendar({
             lang : 'fr',
             timezone: 'local',
             local: 'fr',
+            nowIndicator: true,
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -191,9 +194,12 @@
             },
             dayClick:function(event){
                 $('#myModal').modal({keybord:false,backdrop:'static'});
-                console.log(event);
                 $('#dateRdv').val(moment(event._d).format('DD/MM/YYYY'));
                 $('#heureRdv').val(moment(event._d).format('HH:mm'));
+                if(client['id'] != 0){
+                    $('#clientsInput').val(client['name']);
+                    $('#idClient').val(client['id']);
+                }
             }
         });
 
@@ -209,12 +215,17 @@
                         $('#clientsList').addClass('hide');
                     }
                     $('#clientsList').empty();
-                    if($(data).length < 1){
-                        $('#clientsList').append('<option class="clientItem">0 resultats</option>');
-                    }
+
                     $.each(data,function(key,client){
-                        $('#clientsList').append('<option class="clientItem" value="'+client.id+'">'+client.lastname+' '+client.firstname+'</option>');
+                        $('#clientsList').append('<li class="clientItem" value="'+client.id+'">'+client.lastname+' '+client.firstname+'</li>');
                     });
+
+                    if($(data).length < 1){
+                        $('#clientsList').append('<li class="clientItem">0 resultats</li>');
+                    }else{
+                        $('#clientsList li').first().focus();
+                    }
+
                     $('.clientItem').on('click',function(){
                         $('#clientsInput').val($(this).text());
                         $('#idClient').val($(this).val());
@@ -224,7 +235,6 @@
                 }
             });
         });
-
 
         $('#addRdv').on('click',function(){
              var data ={
@@ -238,7 +248,6 @@
                  taille : $('#taille').val(),
                  remarque: $('#remarque').val(),
             };
-            console.log(addRdv);
             $.ajax({
                 url: addRdv,
                 type:'post',
@@ -249,6 +258,8 @@
                 }
             });
         });
+
+
 
     });
 </script>
