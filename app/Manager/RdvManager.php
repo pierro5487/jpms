@@ -35,7 +35,7 @@ class RdvManager extends \W\Manager\Manager
     }
     public function getEvents($options){
         $sql='
-        SELECT *
+        SELECT *,rdv.id as idEvent
         FROM rdv   
         INNER JOIN customers as cu 
         ON cu.id = rdv.id_customer
@@ -49,5 +49,20 @@ class RdvManager extends \W\Manager\Manager
             'finSemaine'   => date('Y-m-d',strtotime('+ 7 day',$TSLundiSemChoix))*/
         ));
         return $req->fetchAll();
+    }
+
+    public function getEvent($idEvent){
+        $sql='
+        SELECT *,rdv.id as idEvent
+        FROM rdv  
+        INNER JOIN customers as cu 
+        ON cu.id = rdv.id_customer
+        WHERE rdv.id = :idEvent
+        ';
+        $req=$this->dbh->prepare($sql);
+        $req->execute(array(
+            'idEvent' => $idEvent,
+        ));
+        return $req->fetch();
     }
 }

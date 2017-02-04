@@ -35,4 +35,5 @@
         ['GET', '/eventload', 'Agenda#eventLoad','event_load'],
         ['GET', '/getclients', 'Clients#getClients','get_client'],
         ['POST', '/addrdv', 'Agenda#addRdv','add_rdv'],
+        ['GET', '/loadeditevent', 'Agenda#loadEvent','load_edit_event'],
 	);

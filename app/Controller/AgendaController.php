@@ -69,13 +69,14 @@ class AgendaController extends Controller
         $this->showJson($events);
     }
 
+    /**
+     * add et edit rdv
+     */
     public function addRdv(){
         $data = $_POST;
-        print_r($data);
+        $idEvent = $data['idEvent'];
         $explode = explode('/',$data['dateRdv']);
-        //print_r($explode);
         $start = strtotime($explode[2].'-'.$explode[1].'-'.$explode[0].' '.$data['heureRdv'].':00');
-        echo $data['idClient'];
         $end = $start+intval($data['dureeRdv']*60);
         $data = [
             'acier'         => $data['acier'],
@@ -87,7 +88,23 @@ class AgendaController extends Controller
             'id_customer'   => $data['user'],
             'remarque'      => $data['remarque']
         ];
+        if($idEvent == ''){
+            $this->rdvManager->insert($data);
+        }else{
+            $this->rdvManager->update($data,$idEvent);
+        }
 
-        $this->rdvManager->insert($data);
+    }
+
+    public function loadEvent(){
+        $idEvent = $_GET['idEvent'];
+        $event = $this->rdvManager->getEvent($idEvent);
+        $event['dateRdv'] = date('d/m/Y',strtotime($event['start']));
+        $start = strtotime($event['start']);
+        $end = strtotime($event['end']);
+        $duree = $end-$start;
+        $event['debut'] = date('H:i',$start);
+        $event['duree'] = $duree/60;
+        $this->showJson($event);
     }
 }

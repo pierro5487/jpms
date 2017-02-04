@@ -52,6 +52,7 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <input type="hidden" id="idEvent"/>
                     <label>
                         Client:
                     </label>
@@ -189,10 +190,15 @@
                     }
                 });
             },
-            eventClick:function(){
-                alert('oui');
+            eventClick:function(event){
+                if(client['id'] == 0){
+                    loadEvent(event);
+                }else{
+                    alert('Vous ne pouvez pas ajoutez de rdv à ce moment de la journée');
+                }
             },
             dayClick:function(event){
+                resetForm();
                 $('#myModal').modal({keybord:false,backdrop:'static'});
                 $('#dateRdv').val(moment(event._d).format('DD/MM/YYYY'));
                 $('#heureRdv').val(moment(event._d).format('HH:mm'));
@@ -222,6 +228,7 @@
 
                     if($(data).length < 1){
                         $('#clientsList').append('<li class="clientItem">0 resultats</li>');
+                        $('#idClient').val('');
                     }else{
                         $('#clientsList li').first().focus();
                     }
@@ -237,29 +244,93 @@
         });
 
         $('#addRdv').on('click',function(){
-             var data ={
-                 user : $('#idClient').val(),
-                 dateRdv : $('#dateRdv').val(),
-                 heureRdv : $('#heureRdv').val(),
-                 dureeRdv : $('#dureeRdv').val(),
-                 typeRdv : $('#typeRdv').val(),
-                 nbrPneu : $('#nbrPneu').val(),
-                 acier : $('#acier').val(),
-                 taille : $('#taille').val(),
-                 remarque: $('#remarque').val(),
-            };
-            $.ajax({
-                url: addRdv,
-                type:'post',
-                data: data,
-                success:function(){
-                    $('#calendar').fullCalendar( 'refetchEvents' );
-                    $('#myModal').modal('toggle');
-                }
-            });
+            if(verifForm()) {
+                var data = {
+                    user: $('#idClient').val(),
+                    dateRdv: $('#dateRdv').val(),
+                    heureRdv: $('#heureRdv').val(),
+                    dureeRdv: $('#dureeRdv').val(),
+                    typeRdv: $('#typeRdv').val(),
+                    nbrPneu: $('#nbrPneu').val(),
+                    acier: $('#acier').val(),
+                    taille: $('#taille').val(),
+                    remarque: $('#remarque').val(),
+                    idEvent: $('#idEvent').val()
+                };
+                $.ajax({
+                    url: addRdv,
+                    type: 'post',
+                    data: data,
+                    success: function () {
+                        $('#calendar').fullCalendar('refetchEvents');
+                        $('#myModal').modal('toggle');
+                    }
+                });
+            }
         });
 
+        function loadEvent(event){
+            $.ajax({
+                url:chargementEvent,
+                type:'get',
+                data:{
+                    idEvent:event.idEvent
+                },
+                success:function(event){
+                    resetForm();
+                    $('#myModal').modal({keybord:false,backdrop:'static'});
+                    $('#clientsInput').val(event.lastname+' '+event.firstname);
+                    $('#dateRdv').val(event.dateRdv);
+                    $('#heureRdv').val(event.debut);
+                    $('#dureeRdv').val(event.duree);
+                    $('#typeRdv').val(event.livraison);
+                    $('#nbrPneu').val(event.nbr_pneu);
+                    $('#acier').val(event.acier);
+                    $('#taille').val(event.pouce);
+                    $('#remarque').val(event.remarque);
+                    $('#idEvent').val(event.idEvent);
+                    $('#idClient').val(event.id_customer);
 
+
+                }
+            });
+        }
+        function resetForm(){
+            $('#clientsInput').val('');
+            $('#remarque').val('');
+            $('#idEvent').val('');
+            $('#idClient').val('');
+
+        }
+
+        function verifForm(){
+
+            if(!formatDate($('#dateRdv').val())){
+                alert('La date entré n\'est pas au bon format. ex:24/02/2017');
+                return false;
+            }
+            if(!formatTime($('#heureRdv').val())){
+                alert('La date entré n\'est pas au bon format. ex:24/02/2017');
+                return false;
+            }
+            if($('#idClient').val()==''){
+                alert('vous devez entrer un client');
+                return false;
+            }
+            return true;
+        }
+
+        function formatDate(dateString){
+            var patt = new RegExp("^([1-9]|0[1-9]|[1-2][0-9]|3[0-1])/([1-9]|0[1-9]|1[0-2])/([0-9]{4})$");
+            var res = patt.test(dateString);
+            return res;
+        }
+
+        function formatTime(timeString){
+            var patt = new RegExp("^([1-9]|0[1-9]|1[1-9]|2[0-3]):([0-5][0-9])$");
+            var res = patt.test(timeString);
+            return res;
+        }
 
     });
 </script>

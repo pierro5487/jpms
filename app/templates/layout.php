@@ -37,6 +37,7 @@
 		var eventLoad = '<?= $this->url('event_load') ?>';
 		var getClients = '<?= $this->url('get_client') ?>';
         var addRdv = '<?= $this->url('add_rdv') ?>';
+		var chargementEvent = '<?= $this->url('load_edit_event') ?>';
     </script>
     <script src="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 
