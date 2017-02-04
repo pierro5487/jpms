@@ -148,11 +148,13 @@
 <script type="text/javascript" >
     $(function(){
         var client = <?= json_encode($client)?>;
-
+    console.log(client);
         $('#calendar').fullCalendar({
             lang : 'fr',
             timezone: 'local',
             local: 'fr',
+            minTime:'06:00:00',
+            maxTime:'20:00:00',
             nowIndicator: true,
             header: {
                 left: 'prev,next today',

@@ -69,8 +69,13 @@ class CarsController extends Controller
             }
 
         }
+        if(isset($_GET['idClient'])){
+            $client = $_GET['idClient'];
+        }else{
+            $client = null;
+        }
 
-        $this->show('cars/addCar',['brandList'=>$brandList,'ownerList'=>$ownerList,'errors'=>$errors,'car'=>$car]);
+        $this->show('cars/addCar',['brandList'=>$brandList,'ownerList'=>$ownerList,'errors'=>$errors,'car'=>$car,'client'=>$client]);
     }
 
     /*affiche les infos du véhicule*/

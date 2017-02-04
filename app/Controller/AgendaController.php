@@ -23,8 +23,8 @@ class AgendaController extends Controller
     }
 
     public function view(){
-        if(isset($_GET['id'])){
-            $clients = $this->clientManager->find($_GET['id']);
+        if(isset($_GET['idClient'])){
+            $clients = $this->clientManager->find($_GET['idClient']);
             $client['id'] = $clients['id'];
             $client['name'] = $clients['lastname'].' '.$clients['firstname'];
         }else{
