@@ -53,7 +53,7 @@ class CustomersManager extends \W\Manager\Manager
     public function getCustomer($id)
     {
         $sql="
-        SELECT firstname,lastname,email,adress,phone,date_created,cp.VILLE as city,cp.CP as zipcode,cp.id as idCity
+        SELECT c.id as id,firstname,lastname,email,adress,phone,date_created,cp.VILLE as city,cp.CP as zipcode,cp.id as idCity
         FROM customers as c
         INNER JOIN cp_autocomplete as cp
         ON c.id_city=cp.id

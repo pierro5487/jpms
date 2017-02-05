@@ -457,7 +457,6 @@ $(function(){
     });
     /*---impression facture groupé---*/
     $('#printBillGroup').on('click',function(){
-        alert('oui');
         $('header').remove();
         $('footer').remove();
         $('#takePayement').remove();
@@ -486,7 +485,6 @@ $(function(){
     $('#MakeBillsGroup').on('click',function(){
         if(confirm('voulez vous vraiment faire un groupement de ces factures ?')){
             var idCustomer = $('#idCustomer').html();
-            console.log(idCustomer);
             $.ajax({
                 url : ajaxCreateBillsGroup, // La ressource ciblée
                 type : 'GET',
