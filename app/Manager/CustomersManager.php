@@ -77,4 +77,12 @@ class CustomersManager extends \W\Manager\Manager
         $req->execute(array('firstname'=>$newCustomer['firstname'],'lastname'=>$newCustomer['lastname'],'id_city' =>$newCustomer['id_city']));
         return $req->fetchColumn(0);
     }
+
+    public function lastIdInsert()
+    {
+        $sql=('SELECT id FROM customers ORDER BY id DESC');
+        $req=$this->dbh->query($sql);
+        $data = $req->fetch();
+        return $data['id'];
+    }
 }
