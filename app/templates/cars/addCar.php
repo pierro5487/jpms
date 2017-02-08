@@ -32,12 +32,12 @@
         <a href="<?= $this->url('add_model')?>">Ajouter un modèle de véhicule</a>
     </div>
     <div class="selectDivision">
-        <select name="owner">
+        <select name="owner" id="idClient">
             <option class="selectDefault" value="no">Propriétaire</option>
             <?php
             foreach($ownerList as $owner){
                 ?>
-                <option value="<?= $owner['id'] ?>"><?php echo $owner['lastname'].' '.$owner['firstname'] ?></option>
+                <option value="<?= $owner['id'] ?>" <?php if($owner['id'] == $client){echo 'selected';}?>><?php echo $owner['lastname'].' '.$owner['firstname'] ?></option>
                 <?php
             }
             ?>

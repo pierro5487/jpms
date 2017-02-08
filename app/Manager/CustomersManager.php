@@ -45,7 +45,7 @@ class CustomersManager extends \W\Manager\Manager
      */
     public function getCustomersSearchList($search)
     {
-        $req=$this->dbh->prepare('SELECT id FROM customers WHERE lastname LIKE :search');
+        $req=$this->dbh->prepare('SELECT id,firstname,lastname FROM customers WHERE lastname LIKE :search');
         $req->execute(array('search' => $search.'%'));
         return $req->fetchAll();
     }
@@ -76,5 +76,13 @@ class CustomersManager extends \W\Manager\Manager
         $req=$this->dbh->prepare($sql);
         $req->execute(array('firstname'=>$newCustomer['firstname'],'lastname'=>$newCustomer['lastname'],'id_city' =>$newCustomer['id_city']));
         return $req->fetchColumn(0);
+    }
+
+    public function lastIdInsert()
+    {
+        $sql=('SELECT id FROM customers ORDER BY id DESC');
+        $req=$this->dbh->query($sql);
+        $data = $req->fetch();
+        return $data['id'];
     }
 }

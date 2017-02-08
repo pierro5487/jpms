@@ -1,3 +1,6 @@
+<?php
+//session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,8 +10,13 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('bootstrap/css/bootstrap.css') ?>">
     <link rel="stylesheet" href="<?= $this->assetUrl('bootstrap/css/bootstrap-theme.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/fullcalendar.css') ?>">
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
     <script src="<?= $this->assetUrl('js/jquery-3.1.1.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/jquery-ui.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/moment.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/fullcalendar.min.js') ?>"></script>
+	<script src="<?= $this->assetUrl('js/fr.js') ?>"></script>
 	<script src="<?= $this->assetUrl('bootstrap/js/bootstrap.min.js') ?>"></script>
     <script>
         var ajaxCustomerSearch= '<?= $this->url('ajax_customer_search') ?>';
@@ -26,6 +34,10 @@
         var ajaxOthersService= '<?= $this->url('ajax_other_service') ?>';
         var ajaxCityList=  '<?= $this->url('ajax_city_list') ?>';
 		var ajaxDeleteBill = '<?= $this->url('ajax_delete_bill') ?>';
+		var eventLoad = '<?= $this->url('event_load') ?>';
+		var getClients = '<?= $this->url('get_client') ?>';
+        var addRdv = '<?= $this->url('add_rdv') ?>';
+		var chargementEvent = '<?= $this->url('load_edit_event') ?>';
     </script>
     <script src="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 
@@ -67,8 +79,19 @@
 							<li class=""><a href="<?= $this->url('listing_bills')?>">liste des factures</a></li>
 						</ul>
 					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							Agenda<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class=""><a href="<?= $this->url('view_agenda',['semaine'=>date('W'),'year'=>date('Y')])?>">Voir l'agenda</a></li>
+						</ul>
+					</li>
 				</ul>
             </nav>
+			<div id="flash">
+				<?= $this->section('flash') ?>
+			</div>
 		</header>
 
 		<section class=" col-xs-12">

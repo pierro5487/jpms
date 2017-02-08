@@ -96,7 +96,7 @@ class ClientsController extends Controller
     public function add()
     {
         $errors=[];
-        if(isset($_POST['addCustomer'])){
+        if(!empty($_POST)){
             /*traitement données formulaire*/
             $lastname=trim(htmlspecialchars($_POST['lastname']));
             $firstname=trim(htmlspecialchars($_POST['firstname']));
@@ -122,8 +122,21 @@ class ClientsController extends Controller
             /*on teste si il y a des erreurs*/
             if(count($errors) == 0){
                 $this->customersManager->insert($newCustomer);
+                $flash['success'][0] = 'Nouveau client ajouté';
             }
-            $this->show('customers/addCustomer',['errors'=>$errors,'customer'=>$newCustomer]);
+            foreach ($errors as $key => $error){
+                $flash['danger'][$key] = $error;
+            }
+            if(!empty($errors)) {
+                $this->show('customers/addCustomer', ['errors' => $errors, 'customer' => $newCustomer, 'flash' => $flash]);
+            }else{
+                $idClient = $this->customersManager->lastIdInsert();
+                if($_POST['redirection'] == 'auto'){
+                    $this->redirect($this->generateUrl('add_car').'?idClient='.$idClient);
+                }else{
+                    $this->redirect($this->generateUrl('view_agenda').'?idClient='.$idClient);
+                }
+            }
         }
         $this->show('customers/addCustomer',['errors'=>$errors]);
     }
@@ -140,5 +153,11 @@ class ClientsController extends Controller
             $errors['phone']="veuillez entrer un numéro de téléphone valide";
         }
         return $errors;
+    }
+
+    public function getClients(){
+        $search = $_GET['client'];
+        $clients = $this->customersManager->getCustomersSearchList($search);
+        $this->showJson($clients);
     }
 }

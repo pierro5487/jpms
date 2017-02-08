@@ -69,6 +69,28 @@ ul{
 .menu-liste-secondaire:hover{
     box-shadow: 0px 0px 1px 1px black;
 }
+
+@keyframes flash {
+    0% { opacity:0;}
+    20% { opacity: 1;}
+    80% { opacity: 1;}
+    100% { opacity: 0;}
+}
+#flash{
+    opacity: 1;
+    position: fixed;
+    width: 300px;
+    right: 15px;
+    top: 10px;
+    min-height: 87px;
+    z-index: 1;
+}
+
+.flash{
+    animation-duration: 5s;
+    animation-name: flash;
+    opacity: 0;
+}
 /*---------------section--------------------*/
 /*
 /*---------------------------------------------*/
@@ -108,6 +130,10 @@ form input{
     border-radius: 5px;
     height: 40px;
     margin: 10px 0px;
+}
+form input[type=checkbox]{
+    width: inherit;
+    height: inherit;
 }
 form textarea{
     display: block;
