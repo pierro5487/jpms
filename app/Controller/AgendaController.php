@@ -86,7 +86,8 @@ class AgendaController extends Controller
             'start'         => date('Y-m-d H:i:s',$start),
             'end'           => date('Y-m-d H:i:s',$end),
             'id_customer'   => $data['user'],
-            'remarque'      => $data['remarque']
+            'remarque'      => $data['remarque'],
+            'inconnu'         => $data['inconnu']
         ];
         if($idEvent == ''){
             $this->rdvManager->insert($data);

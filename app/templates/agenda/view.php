@@ -60,6 +60,8 @@
                         <input list="clientsList" type="text" id="clientsInput" autocomplete="off" />
                         <input type="hidden" id="idClient"/>
                         <ul id="clientsList" class="hide" ></ul>
+                        <label for="clientInconnu"><input id="clientInconnu" type="checkbox"/>client non enregistré</label>
+                        <input id="clientInconnuInput" class="hide" type="text" placeholder="nom + tel"/>
                     </div>
                     <label>
                         date Rdv:
@@ -244,7 +246,17 @@
                 }
             });
         });
+        $('#clientInconnu').on('click',function(){
+            $('#clientInconnuInput').toggleClass('hide');
+            $('#clientsInput').toggleClass('hide');
+            if($(this).prop('checked')){
+                $('#idClient').val('');
+                $('#clientsInput').val('');
+            }else{
+                 $('#clientInconnuInput').val('');
+            }
 
+        });
         $('#addRdv').on('click',function(){
             if(verifForm()) {
                 var data = {
@@ -257,7 +269,8 @@
                     acier: $('#acier').val(),
                     taille: $('#taille').val(),
                     remarque: $('#remarque').val(),
-                    idEvent: $('#idEvent').val()
+                    idEvent: $('#idEvent').val(),
+                    inconnu: $('#clientInconnuInput').val()
                 };
                 $.ajax({
                     url: addRdv,
@@ -281,7 +294,6 @@
                 success:function(event){
                     resetForm();
                     $('#myModal').modal({keybord:false,backdrop:'static'});
-                    $('#clientsInput').val(event.lastname+' '+event.firstname);
                     $('#dateRdv').val(event.dateRdv);
                     $('#heureRdv').val(event.debut);
                     $('#dureeRdv').val(event.duree);
@@ -291,17 +303,27 @@
                     $('#taille').val(event.pouce);
                     $('#remarque').val(event.remarque);
                     $('#idEvent').val(event.idEvent);
-                    $('#idClient').val(event.id_customer);
-
-
+                    if(event.id_customer != ''){
+                        $('#clientsInput').val(event.lastname+' '+event.firstname).removeClass('hide');
+                        $('#idClient').val(event.id_customer);
+                        $('#clientInconnuInput').val('').addClass('hide');
+                        $('#clientInconnu').prop('checked',false);
+                    }else{
+                        $('#clientsInput').val('').addClass('hide');
+                        $('#idClient').val('');
+                        $('#clientInconnuInput').val(event.inconnu).removeClass('hide');
+                        $('#clientInconnu').prop('checked',true);
+                    }
                 }
             });
         }
         function resetForm(){
-            $('#clientsInput').val('');
+            $('#clientsInput').val('').removeClass('hide');
             $('#remarque').val('');
             $('#idEvent').val('');
             $('#idClient').val('');
+            $('#clientInconnu').prop('checked',false);
+            $('#clientInconnuInput').val('').addClass('hide');
 
         }
 
@@ -315,7 +337,7 @@
                 alert('La date entré n\'est pas au bon format. ex:24/02/2017');
                 return false;
             }
-            if($('#idClient').val()==''){
+            if($('#idClient').val()=='' && $('#clientInconnuInput').val()==''){
                 alert('vous devez entrer un client');
                 return false;
             }

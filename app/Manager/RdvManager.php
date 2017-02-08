@@ -37,7 +37,7 @@ class RdvManager extends \W\Manager\Manager
         $sql='
         SELECT *,rdv.id as idEvent
         FROM rdv   
-        INNER JOIN customers as cu 
+        LEFT JOIN customers as cu 
         ON cu.id = rdv.id_customer
         ';
         if(!empty($options)){
@@ -55,7 +55,7 @@ class RdvManager extends \W\Manager\Manager
         $sql='
         SELECT *,rdv.id as idEvent
         FROM rdv  
-        INNER JOIN customers as cu 
+        LEFT JOIN customers as cu 
         ON cu.id = rdv.id_customer
         WHERE rdv.id = :idEvent
         ';

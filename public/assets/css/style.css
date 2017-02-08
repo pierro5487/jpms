@@ -131,6 +131,10 @@ form input{
     height: 40px;
     margin: 10px 0px;
 }
+form input[type=checkbox]{
+    width: inherit;
+    height: inherit;
+}
 form textarea{
     display: block;
     width: 80%;
