@@ -334,7 +334,7 @@
                 return false;
             }
             if(!formatTime($('#heureRdv').val())){
-                alert('La date entré n\'est pas au bon format. ex:24/02/2017');
+                alert('La date entré n\'est pas au bon format. ex:10:45');
                 return false;
             }
             if($('#idClient').val()=='' && $('#clientInconnuInput').val()==''){
@@ -351,7 +351,7 @@
         }
 
         function formatTime(timeString){
-            var patt = new RegExp("^([1-9]|0[1-9]|1[1-9]|2[0-3]):([0-5][0-9])$");
+            var patt = new RegExp("^([1-9]|0[1-9]|1[0-9]|2[0-3]):([0-5][0-9])$");
             var res = patt.test(timeString);
             return res;
         }

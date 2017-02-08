@@ -131,9 +131,10 @@ form input{
     height: 40px;
     margin: 10px 0px;
 }
-form input[type=checkbox]{
-    width: inherit;
-    height: inherit;
+#clientInconnu{
+    width: 12px;
+    display: inline;
+    height: 12px;
 }
 form textarea{
     display: block;
