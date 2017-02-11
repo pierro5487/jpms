@@ -93,8 +93,9 @@
                         <select id="typeRdv">
                             <option value="livre">montage pneus livrés à l'atelier</option>
                             <option value="non_livre">montage pneus ramenés par client</option>
-                            <option value="switch">switching des roues</option>
+                            <option value="switch">permut. des roues</option>
                             <option value="decalaminage">décalaminage</option>
+                            <option value="autres">autres</option>
                         </select>
                     </diV>
                     <label>

@@ -39,11 +39,11 @@ class AgendaController extends Controller
         $options = 'start BETWEEN '."'".$start."'".' AND '."'".$end."'";
         $events = $this->rdvManager->getEvents($options);
         foreach ($events as $key => $event){
-            if($event['livraison'] != 'decalaminage'){
+            if($event['livraison'] != 'decalaminage' && $event['livraison'] != 'autres'){
                 $title = $event['nbr_pneu'].' '.$event['acier'].' '.$event['pouce'].' '.'pouce'.' '.$event['remarque'];
                 $events[$key]['title'] = $title;
             }else{
-                $events[$key]['title'] = 'décalaminage';
+                $events[$key]['title'] = $event['livraison'];
             }
 
             unset($events[$key]['nbr_pneu']);
@@ -62,6 +62,9 @@ class AgendaController extends Controller
                     break;
                 case 'switch':
                     $events[$key]['color'] = 'orange';
+                    break;
+                case 'autres':
+                    $events[$key]['color'] = 'grey';
                     break;
             }
         }
