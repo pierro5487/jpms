@@ -42,8 +42,10 @@ class AgendaController extends Controller
             if($event['livraison'] != 'decalaminage' && $event['livraison'] != 'autres'){
                 $title = $event['nbr_pneu'].' '.$event['acier'].' '.$event['pouce'].' '.'pouce'.' '.$event['remarque'];
                 $events[$key]['title'] = $title;
-            }else{
+            }else if($event['livraison'] == 'decalaminage'){
                 $events[$key]['title'] = $event['livraison'];
+            }else{
+                $events[$key]['title'] = $event['inconnu'];
             }
 
             unset($events[$key]['nbr_pneu']);

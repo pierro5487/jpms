@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08cf1f40-138f-4421-b64f-5af60a3895a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controller/AgendaController.php" afterPath="$PROJECT_DIR$/app/Controller/AgendaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/agenda/view.php" afterPath="$PROJECT_DIR$/app/templates/agenda/view.php" />
     </list>
     <ignored path="jpms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,8 +64,8 @@
       <file leaf-file-name="AgendaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Controller/AgendaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="41" column="55" selection-start-line="41" selection-start-column="55" selection-end-line="41" selection-end-column="55" />
+            <state relative-caret-position="474">
+              <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -538,12 +536,12 @@
       <workItem from="1486239545215" duration="14230000" />
       <workItem from="1486583609728" duration="3571000" />
       <workItem from="1486757339740" duration="871000" />
-      <workItem from="1486834310579" duration="1885000" />
+      <workItem from="1486834310579" duration="2240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352596000" />
+    <option name="totallyTimeSpent" value="352951000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -981,8 +979,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Controller/AgendaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="41" column="55" selection-start-line="41" selection-start-column="55" selection-end-line="41" selection-end-column="55" />
+        <state relative-caret-position="474">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding />
         </state>
       </provider>
